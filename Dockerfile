@@ -4,7 +4,7 @@ ARG packer_version=1.2.5
 ARG inspec_version=2.2.61
 ARG ansible_version=2.4.*
 ARG credstash_version=1.15.*
-ARG awscli_version}=1.15.*
+ARG awscli_version=1.15.*
 
 ENV PACKER_VER=${packer_version}
 ENV INSPEC_VER=${inspec_version}
