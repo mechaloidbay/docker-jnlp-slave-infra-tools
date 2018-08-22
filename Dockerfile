@@ -21,9 +21,9 @@ RUN apt-get install -y wget unzip &&\
     dpkg -i /tmp/inspec.deb
 
 # Install Virtual Env & Ansible
-RUN echo $'ansible==2.4.* \n\
+RUN echo "ansible==2.4.* \n\
 cryptography==2.0.3 \n\
-credstash==1.14.* ' > /tmp/requirements.txt
+credstash==1.14.*" > /tmp/requirements.txt
 RUN apt-get install -y python-pip &&\
     pip install virtualenv &&\
     sudo -H pip install -r /tmp/requirements.txt
