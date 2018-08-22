@@ -1,5 +1,13 @@
 FROM jenkins/jnlp-slave
 
+ARG inspec_version=2.2.61
+ARG ansible_version=2.4.*
+ARG packer_version=1.2.5
+
+ENV INSPEC_VER=${inspec_version}
+ENV ANSIBLE_VER=${ansible_version}
+ENV PACKER_VER=${packer_version}
+
 USER root
 
 # Enable sudo
@@ -9,17 +17,19 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install Chef
 RUN apt-get install -y wget unzip &&\
-    wget https://packages.chef.io/files/stable/inspec/2.2.61/ubuntu/14.04/inspec_2.2.61-1_amd64.deb -O /tmp/inspec.deb &&\
+    wget https://packages.chef.io/files/stable/inspec/${inspec_version}/ubuntu/14.04/inspec_${inspec_version}-1_amd64.deb -O /tmp/inspec.deb &&\
     dpkg -i /tmp/inspec.deb
 
 # Install Virtual Env & Ansible
-COPY requirements.txt /tmp/requirements.txt
+RUN echo $'ansible==2.4.* \n\
+cryptography==2.0.3 \n\
+credstash==1.14.* ' > /tmp/requirements.txt
 RUN apt-get install -y python-pip &&\
     pip install virtualenv &&\
     pip install -r /tmp/requirements.txt
 
 # Install Packer
-RUN wget https://releases.hashicorp.com/packer/1.2.5/packer_1.2.5_linux_amd64.zip -O packer.zip &&\
+RUN wget https://releases.hashicorp.com/packer/${packer_version}/packer_${packer_version}_linux_amd64.zip -O packer.zip &&\
     unzip packer.zip &&\
     mv packer /usr/bin/packer &&\
     chmod 755 /usr/bin/packer
