@@ -1,5 +1,0 @@
-ansible==2.4.*
-# Refer to https://github.com/fugue/credstash/issues/175
-# @TODO Update credstash to next major version once this bug is fixed
-cryptography==2.0.3
-credstash==1.14.*
