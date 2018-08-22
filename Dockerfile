@@ -8,8 +8,8 @@ RUN apt-get update &&\
     dpkg -i /tmp/inspec.deb
 
 COPY requirements.txt /tmp/requirements.txt
-RUN apt-get install -y python-pip &&
-    pip install virtualenv &&
+RUN apt-get install -y python-pip &&\
+    pip install virtualenv &&\
     pip install -r /tmp/requirements.txt
 
 RUN wget https://releases.hashicorp.com/packer/1.2.5/packer_1.2.5_linux_amd64.zip -O packer.zip &&\
