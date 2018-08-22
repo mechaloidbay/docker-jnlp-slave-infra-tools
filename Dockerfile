@@ -26,7 +26,7 @@ cryptography==2.0.3 \n\
 credstash==1.14.* ' > /tmp/requirements.txt
 RUN apt-get install -y python-pip &&\
     pip install virtualenv &&\
-    pip install -r /tmp/requirements.txt
+    sudo -H pip install -r /tmp/requirements.txt
 
 # Install Packer
 RUN wget https://releases.hashicorp.com/packer/${packer_version}/packer_${packer_version}_linux_amd64.zip -O packer.zip &&\
