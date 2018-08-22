@@ -1,13 +1,15 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: debian:stretch
+    machine: true
     steps:
       - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: Build Image
+          command: docker build -t mechaloidbay/jnlp-slave-packer:latest .
+      # deploy the image
       - run:
-          name: Print the Current Time
-          command: date
+          name: Push to Docker Hub
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push mechaloidbay/jnlp-slave-packer
