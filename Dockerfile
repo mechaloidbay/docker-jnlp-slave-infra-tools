@@ -14,7 +14,7 @@ RUN apt-get install -y python-pip &&\
 
 RUN wget https://releases.hashicorp.com/packer/1.2.5/packer_1.2.5_linux_amd64.zip -O packer.zip &&\
     unzip packer.zip &&\
-    mv /tmp/packer /usr/bin/packer &&\
+    mv packer /usr/bin/packer &&\
     chmod 755 /usr/bin/packer
 
 ENV USER jenkins
