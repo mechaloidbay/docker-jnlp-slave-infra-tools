@@ -1,12 +1,16 @@
 FROM jenkins/jnlp-slave
 
+ARG packer_version=1.2.5
 ARG inspec_version=2.2.61
 ARG ansible_version=2.4.*
-ARG packer_version=1.2.5
+ARG credstash_version=1.15.*
+ARG awscli_version}=1.15.*
 
+ENV PACKER_VER=${packer_version}
 ENV INSPEC_VER=${inspec_version}
 ENV ANSIBLE_VER=${ansible_version}
-ENV PACKER_VER=${packer_version}
+ENV CREDSTASH_VER=${credstash_version}
+ENV AWSCLI_VER=${awscli_version}
 
 USER root
 
@@ -22,8 +26,8 @@ RUN apt-get install -y wget unzip &&\
 
 # Install Virtual Env & Ansible
 RUN echo "ansible==${ansible_version} \n\
-cryptography==2.0.3 \n\
-credstash==1.14.*" > /tmp/requirements.txt
+awscli==${awscli_version}
+credstash==${credstash_version}" > /tmp/requirements.txt
 RUN apt-get install -y python-pip &&\
     pip install virtualenv &&\
     sudo -H pip install -r /tmp/requirements.txt
@@ -35,5 +39,7 @@ RUN wget https://releases.hashicorp.com/packer/${packer_version}/packer_${packer
     chmod 755 /usr/bin/packer
 
 ENV USER jenkins
+
+USER jenkins
 
 ENTRYPOINT ["jenkins-slave"]
