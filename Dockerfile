@@ -26,7 +26,7 @@ RUN apt-get install -y wget unzip &&\
 
 # Install Virtual Env & Ansible
 RUN echo "ansible==${ansible_version} \n\
-awscli==${awscli_version}
+awscli==${awscli_version} \n\
 credstash==${credstash_version}" > /tmp/requirements.txt
 RUN apt-get install -y python-pip &&\
     pip install virtualenv &&\
