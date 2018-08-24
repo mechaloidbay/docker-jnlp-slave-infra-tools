@@ -1,4 +1,4 @@
-FROM jenkins/jnlp-slave
+FROM jenkins/jnlp-slave:3.23-1
 
 ARG packer_version=1.2.5
 ARG inspec_version=2.2.61

@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  jnlp-slave-infra-tools:
+    image: "${DOCKER_REGISTRY_URL}${DOCKER_REGISTRY_NAMESPACE}jnlp-slave-infra-tools${IMAGE_TAG}"
+    build:
+      context: .
+      labels:
+        samsung.srca.jenkins-master.team: "Cloud Platform TechOps"
+        samsung.srca.jenkins-master.created: ${TIMESTAMP}
+        samsung.srca.jenkins-master.vcs-ref: ${COMMIT_ID}
+        samsung.srca.jenkins-master.vcs-url: https://github.sec.samsung.net/RCA8-gsco/docker-jnlp-slave-infra-tools
+        samsung.srca.jenkins-master.authors: "Shih Oon Liong <shih.liong@samsung.com>, Poornima Lokhande <p.lokhande@samsung.com>"
