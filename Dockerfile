@@ -2,7 +2,7 @@ FROM jenkins/jnlp-slave:3.23-1
 
 ARG packer_version=1.2.5
 ARG inspec_version=2.2.61
-ARG ansible_version=2.4.*
+ARG ansible_version=2.6.*
 ARG credstash_version=1.15.*
 ARG awscli_version=1.15.*
 
